@@ -1,0 +1,44 @@
+{
+    "name": "Data Transfer",
+    "namespace": "IU\\DataTransfer",
+    "description": "Data Transfer transfers data between REDCap projects.",
+    "framework-version": 15,
+    "authors": [
+        {
+            "name": "Jim Mullen",
+            "email": "mullen2@iu.edu",
+            "institution": "Indiana University"
+        }
+    ],
+   "crons": [
+       {
+           "cron_name": "data_transfer_module",
+           "cron_description": "Cron that runs every 15 minutes to check for data transfer jobs to run",
+           "method": "cron",
+           "cron_frequency": "900",
+           "cron_max_run_time": "3600"
+        }
+    ],
+    "compatibility": {
+        "php-version-min": "8.0.0",
+        "php-version-max": "",
+        "redcap-version-min": "14.5.20",
+        "redcap-version-max": ""
+    },
+    "links": {
+       "control-center": [
+           {
+               "name": "Data Transfer",
+               "icon": "fas fa-arrow-right-arrow-left",
+               "url": "web/admin/info.php"
+           }
+       ],
+       "project": [
+           {
+               "name": "Data Transfer",
+               "icon": "fas fa-arrow-right-arrow-left",
+               "url": "web/index.php"
+           }
+       ]
+    }
+}

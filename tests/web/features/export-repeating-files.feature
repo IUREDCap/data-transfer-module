@@ -1,0 +1,56 @@
+#-------------------------------------------------------
+# Copyright (C) 2025 The Trustees of Indiana University
+# SPDX-License-Identifier: BSD-3-Clause
+#-------------------------------------------------------
+
+Feature: Data Transfer
+  In order to transfer only file data from one project to another
+  As a user
+  I need to be able to specify and run data transfers that contain only files
+
+  Background:
+    Given I am on "/"
+    When I log in as user
+
+  Scenario: Transfer only file data data
+
+    # Erase any existing data in the destination project
+    When I erase all data from project "Data Transfer - Repeating Events Destination Project"
+    And I go to record status dashboard for project "Data Transfer - Repeating Events Destination Project"
+    Then I should see "No records exist yet"
+    But I should not see "REDCap crashed"
+
+    # Delete the test data transfer configuration, if it exists
+    When I go to Data Transfer for project "Data Transfer - Repeating Events Source Project"
+    And I delete configuration "behat-export-repeating-files-test" if it exists
+    Then I should not see "behat-export-repeating-files-test"
+    And I should not see "REDCap crashed"
+
+    # Add the file data transfer configuration
+    When I add configuration "behat-export-repeating-files-test"
+    And I follow configuration "behat-export-repeating-files-test"
+    And I enable export to local project "Data Transfer - Repeating Events Destination Project"
+    # Also test EQUIVALENT and COMPATIBLE for a single field
+    And I add field mapping "ALL" "weight" "patient_notes" to "MATCHING" "MATCHING" "EQUIVALENT"
+    And I add field mapping "ALL" "weight" "researcher_notes" to "MATCHING" "MATCHING" "COMPATIBLE"
+    Then I should see "behat-export-repeating-files-test"
+    But I should not see "REDCap crashed"
+
+    # Tansfer the data
+    When I follow "Manual Transfer"
+    And I wait for and press "Transfer"
+    Then I should eventually see "Data transferred"
+    But I should not see "REDCap crashed"
+
+    # Check the data that was transferred
+    When I go to report all for project "Data Transfer - Repeating Events Destination Project"
+    Then I should see "1001"
+    And the project data should match test data file "repeating-files.csv"
+    But I should not see "1002"
+    But I should not see "REDCap crashed"
+
+    When I go to project home for project "Data Transfer - Repeating Events Destination Project"
+    Then I should see table row ("Records in project, 1")
+
+
+

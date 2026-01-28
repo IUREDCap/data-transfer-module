@@ -1,0 +1,47 @@
+#!/usr/bin/php
+<?php
+#-------------------------------------------------------
+# Copyright (C) 2025 The Trustees of Indiana University
+# SPDX-License-Identifier: BSD-3-Clause
+#-------------------------------------------------------
+
+require_once __DIR__.'/vendor/autoload.php';
+
+use SebastianBergmann\CodeCoverage\CodeCoverage;
+use SebastianBergmann\CodeCoverage\Filter;
+use SebastianBergmann\CodeCoverage\Driver\Selector;
+
+
+$files = glob(__DIR__.'/coverage-data/coverage.*');
+
+#------------------------------------------------------
+
+$filter = new Filter;
+
+# Included files and directories
+$filter->includeFile(__DIR__.'/../../DataTransfer.php');
+$filter->includeFiles(glob(__DIR__.'/../../classes/*.php'));
+$filter->includeFiles(glob(__DIR__.'/../../web/*.php'));
+
+
+# Excluded files
+# $filter->excludeFile(__DIR__.'/../../web/test.php');
+
+
+$selector = new Selector;
+
+# ------------------------------------------------------
+$combinedCoverage = new CodeCoverage($selector->forLineCoverage($filter), $filter);
+
+$count = 0;
+foreach ($files as $file) {
+    $coverage = require $file;
+    $combinedCoverage->merge($coverage); 
+    $count++;
+}
+
+$writer = new \SebastianBergmann\CodeCoverage\Report\Html\Facade();
+$writer->process($combinedCoverage, __DIR__.'/coverage');
+
+print "{$count} files combined.\n";
+

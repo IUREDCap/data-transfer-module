@@ -1,0 +1,28 @@
+/*
+ * Copyright (C) 2025 The Trustees of Indiana University
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#pagecontainer {
+    max-width: 1100px;
+}
+
+#container {
+    /* width: 100%; */
+}
+
+h4 {
+    font-size: 18.2px;
+    font-weight: 700;
+}
+
+/**********************************/
+/* Long table cell                */
+/**********************************/
+td.ellipsis {
+    max-width: 14em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

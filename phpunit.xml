@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- =================================================
+Copyright (C) 2025 The Trustees of Indiana University
+SPDX-License-Identifier: BSD-3-Clause
+================================================== -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" bootstrap="vendor/autoload.php" displayDetailsOnTestsThatTriggerDeprecations="true" displayDetailsOnTestsThatTriggerWarnings="true">
+  <testsuites>
+    <testsuite name="unit">
+      <file>tests/unit/AdminConfigTest.php</file>
+      <file>tests/unit/AuthorizationTest.php</file>
+      <file>tests/unit/ConfigurationTest.php</file>
+      <file>tests/unit/ConfigurationsTest.php</file>
+      <file>tests/unit/DataTransferTest.php</file>
+      <file>tests/unit/DataTransfererTest.php</file>
+      <file>tests/unit/FieldMapTest.php</file>
+      <file>tests/unit/FieldMappingTest.php</file>
+      <file>tests/unit/FieldMappingStatusTest.php</file>
+      <file>tests/unit/FilterTest.php</file>
+      <file>tests/unit/IdFieldBatchesTest.php</file>
+      <file>tests/unit/ProjectTest.php</file>
+      <file>tests/unit/RedCapDbTest.php</file>
+      <file>tests/unit/SettingsTest.php</file>
+      <file>tests/unit/VariableTest.php</file>
+      <file>tests/unit/VersionTest.php</file>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <directory suffix=".php">classes</directory>
+    </include>
+    <exclude>
+    </exclude>
+  </source>
+</phpunit>

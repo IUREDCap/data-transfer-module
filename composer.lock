@@ -1,0 +1,68 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "54a114f061ffdc75f4fdf671b24b55d4",
+    "packages": [
+        {
+            "name": "iu-redcap/phpcap",
+            "version": "1.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IUREDCap/phpcap.git",
+                "reference": "767f3b93f45bf3830a3756aaef0c8d08bf310766"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IUREDCap/phpcap/zipball/767f3b93f45bf3830a3756aaef0c8d08bf310766",
+                "reference": "767f3b93f45bf3830a3756aaef0c8d08bf310766",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-openssl": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "erusev/parsedown": "1.7.4",
+                "phpstan/phpstan": "2.1.0",
+                "phpunit/phpunit": "11.4.4",
+                "smalot/pdfparser": "2.11.0",
+                "squizlabs/php_codesniffer": "3.11.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IU\\PHPCap\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "PHP library for accessing the REDCap API",
+            "keywords": [
+                "redcap"
+            ],
+            "support": {
+                "issues": "https://github.com/IUREDCap/phpcap/issues",
+                "source": "https://github.com/IUREDCap/phpcap/tree/1.5.3"
+            },
+            "time": "2025-01-16T13:12:12+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "platform-overrides": {
+        "php": "7.2.5"
+    },
+    "plugin-api-version": "2.2.0"
+}
