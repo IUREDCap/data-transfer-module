@@ -129,7 +129,6 @@ class Project
         $this->removeDescriptiveFieldsFromMetadata();
 
         $this->addCompleteFieldsToMetadata();
-        error_log('metadata after add complete field: ' . print_r($this->metadata, true), 3, __DIR__ . '/../test.log');
         $this->metadataMap = $this->createMetadataMap();
 
         #---------------------------------------------------------------
@@ -211,7 +210,6 @@ class Project
     public function addCompleteFieldsToMetadata()
     {
         $forms = $this->getInstrumentNames();
-        error_log('add complete field forms: ' . print_r($forms, true), 3, __DIR__ . '/../test.log');
         foreach ($forms as $form) {
             $fieldInfo = array();
 
