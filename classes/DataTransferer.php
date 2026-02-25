@@ -234,7 +234,7 @@ class DataTransferer
             $destinationParameters['recordIds'] = $idFieldBatch[1];
         } else {
             $message = "Unknown record match value: \"{$this->configuration->getRecordMatch()}\".";
-            throw new \Exception($messsage);
+            throw new \Exception($message);
         }
         $destinationData = $destinationProject->exportDataMapAp($destinationParameters);
 
@@ -259,7 +259,7 @@ class DataTransferer
                     $modifiedRecordIds[$secondaryUniqueField] = 1;
                 } else {
                     $message = "Unknown record match value: \"{$this->configuration->getRecordMatch()}\".";
-                    throw new \Exception($messsage);
+                    throw new \Exception($message);
                 }
             }
         }
@@ -362,7 +362,7 @@ class DataTransferer
             $destinationRecordId = $secondaryUniqueField;
         } else {
             $message = "Unknown record match value: \"{$this->configuration->getRecordMatch()}\".";
-            throw new \Exception($messsage);
+            throw new \Exception($message);
         }
 
 
@@ -860,7 +860,7 @@ class DataTransferer
             $destinationRecordId = $secondaryUniqueField;
         } else {
             $message = "Unknown record match value: \"{$this->configuration->getRecordMatch()}\".";
-            throw new \Exception($messsage);
+            throw new \Exception($message);
         }
 
         if (!array_key_exists($destinationRecordId, $destinationData) && !$this->configuration->createNewRecords()) {
@@ -889,6 +889,7 @@ class DataTransferer
 
                         foreach ($mappings as $mapping) {
                             $fileUpdated = $this->transferFile(
+                                $sourceRows,
                                 $sourceRow,
                                 $recordId,
                                 $secondaryUniqueField,
@@ -918,6 +919,7 @@ class DataTransferer
     }
 
     public function transferFile(
+        $sourceRows,
         $sourceRow,
         $recordId,
         $secondaryUniqueField,
@@ -934,7 +936,7 @@ class DataTransferer
             $destinationRecordId = $secondaryUniqueField;
         } else {
             $message = "Unknown record match value: \"{$this->configuration->getRecordMatch()}\".";
-            throw new \Exception($messsage);
+            throw new \Exception($message);
         }
 
         $sourceRepeatInstance = $sourceRow[Project::REDCAP_REPEAT_INSTANCE] ?? null;
@@ -1063,7 +1065,7 @@ class DataTransferer
                         $destinationRecordId,
                         $destinationField,
                         $destinationEvent,
-                        $destinationRepeatInstance
+                        $destinationInstance
                     );
                 } catch (\Exception $exception) {
                     $destinationFileInfo = [];

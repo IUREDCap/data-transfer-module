@@ -314,7 +314,7 @@ class RedCapDb
         $result = $this->module->query($sql, $params);
 
         $noDocIdMessage = "No docuent ID found for field \"{$field}\" "
-            . " in record \"{$recordId}\" in project with ID {$projectID}.";
+            . " in record \"{$recordId}\" in project with ID {$projectId}.";
 
         $docId = null;
 

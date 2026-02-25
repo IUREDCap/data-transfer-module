@@ -36,7 +36,7 @@ class Configurations
         }
 
         if (!$configuration->mayBeModifiedByUser($username, $projectUsers, $isSuperUser)) {
-            $message = "User \"{username}\" does not have permission to modify configuration \"{$fromConfigName}\".";
+            $message = "User \"{username}\" does not have permission to modify configuration \"{$name}\".";
             throw new \Exception($message);
         }
 

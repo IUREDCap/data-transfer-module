@@ -126,7 +126,10 @@ class Project
 
 
         $this->metadata    = \REDCap::getDataDictionary($this->pid, 'array');
+        $this->removeDescriptiveFieldsFromMetadata();
+
         $this->addCompleteFieldsToMetadata();
+        error_log('metadata after add complete field: ' . print_r($this->metadata, true), 3, __DIR__ . '/../test.log');
         $this->metadataMap = $this->createMetadataMap();
 
         #---------------------------------------------------------------
@@ -180,6 +183,7 @@ class Project
         $this->pid   = $this->projectInfo['project_id'];
 
         $this->metadata    = $this->redCapProject->exportMetadata();
+        $this->removeDescriptiveFieldsFromMetadata();
         $this->addCompleteFieldsToMetadata();
         $this->metadataMap = $this->createMetadataMap();
 
@@ -207,6 +211,7 @@ class Project
     public function addCompleteFieldsToMetadata()
     {
         $forms = $this->getInstrumentNames();
+        error_log('add complete field forms: ' . print_r($forms, true), 3, __DIR__ . '/../test.log');
         foreach ($forms as $form) {
             $fieldInfo = array();
 
@@ -225,6 +230,22 @@ class Project
             $fieldInfo['events'] = $events;
 
             $this->metadata[$fieldName] = $fieldInfo;
+        }
+    }
+
+    /**
+     * Removes the descriptive fields (which are not real data fields)
+     * from the metadata.
+     */
+    public function removeDescriptiveFieldsFromMetadata()
+    {
+        if (isset($this->metadata)) {
+            foreach ($this->metadata as $fieldName => $field) {
+                if ($field['field_type'] === 'descriptive') {
+                    unset($this->metadata[$fieldName]);
+                }
+            }
+            $this->metadata = array_values($this->metadata); // re-index array
         }
     }
 
@@ -711,7 +732,7 @@ class Project
 
         if (!empty($form)) {
             # form specified (only check this form)
-            $fields = $this->getFormFields($formName, $includeCompleteField, $includeRecordId);
+            $fields = $this->getFormFields($form, $includeCompleteField, $includeRecordId);
         } elseif (!empty($event)) {
             # event specified with no form (only check forms belongin to the event)
             $eventForms = $this->getEventForms($event);
@@ -1248,7 +1269,7 @@ class Project
             # and then decode the JSON to generate the same format returned by the API
             # method.
             $returnFormat = 'json';
-            $combineCheckboxValue = false;
+            $combineCheckboxValues = false;
             $exportDataAccessGroups = true;
             $json = \REDCap::getData(
                 [

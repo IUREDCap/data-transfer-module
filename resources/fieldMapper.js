@@ -585,7 +585,9 @@ DataTransferModule.createProject = function(projectJson) {
                 // If the form exists in the project and has fields,
                 // then add the complete field to the form fields
                 // and then add the forms fields to the fields to return
-                formFieldNames.push(forms[i] + '_complete');
+                // OBSOLETE: ????
+                // var completeField = forms[i] + '_complete';
+                // formFieldNames.push(completeField);
                 fieldNames.push(...formFieldNames);
             }
         }

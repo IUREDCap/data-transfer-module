@@ -115,7 +115,6 @@ echo $buffer;
 $module->renderProjectPageContentHeader($selfUrl, $error, $warning, $success);
 ?>
 
-
 <div>
     <span style="font-weight: bold;">Configurations:</span>
     <select id="dtConfigSelect">

@@ -407,7 +407,7 @@ class FieldMapping
                                 $mapping->sourceEvent    = $sourceEvent;
                                 $mapping->sourceForm     = $sourceForm;
                                 $mapping->sourceField    = $sourceField;
-                                $mapping->sourceInstance = $this->sourceInstance;
+                                # $mapping->sourceInstance = $this->sourceInstance;
 
                                 if ($this->destinationEvent === FieldMapping::MATCHING) {
                                     $mapping->destinationEvent = $sourceEvent;
@@ -429,7 +429,7 @@ class FieldMapping
                                     $mapping->destinationField = $this->destinationField;
                                 }
 
-                                $mapping->destinationInstance = $this->destinationInstance;
+                                # $mapping->destinationInstance = $this->destinationInstance;
                                 $mapping->excludeDestination  = $this->excludeDestination;
 
                                 $expandedCheckboxes = false;
