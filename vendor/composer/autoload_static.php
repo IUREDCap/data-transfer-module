@@ -7,29 +7,29 @@ namespace Composer\Autoload;
 class ComposerStaticInit983aeb3ebb16467f5a95f9783368b4b3
 {
     public static $prefixLengthsPsr4 = array (
-        'I' => 
+        'I' =>
         array (
             'IU\\PHPCap\\' => 10,
             'IU\\DataTransfer\\' => 16,
         ),
-        'E' => 
+        'E' =>
         array (
             'ExternalModules\\' => 16,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'IU\\PHPCap\\' => 
+        'IU\\PHPCap\\' =>
         array (
             0 => __DIR__ . '/..' . '/iu-redcap/phpcap/src',
         ),
-        'IU\\DataTransfer\\' => 
+        'IU\\DataTransfer\\' =>
         array (
             0 => __DIR__ . '/../..' . '/',
             1 => __DIR__ . '/../..' . '/classes',
             2 => __DIR__ . '/../..' . '/tests/unit',
         ),
-        'ExternalModules\\' => 
+        'ExternalModules\\' =>
         array (
             0 => __DIR__ . '/../..' . '/tests/external',
         ),

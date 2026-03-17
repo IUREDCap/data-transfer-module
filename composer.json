@@ -6,7 +6,7 @@
 		"REDCap", "data transfer", "data copy"
 	],
 	"require" : {
-        "iu-redcap/phpcap" : "1.5.3"
+        "iu-redcap/phpcap" : "1.5.4"
 	},
 	"autoload" : {
 		"psr-4" : {
