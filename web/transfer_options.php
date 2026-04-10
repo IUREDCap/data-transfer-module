@@ -273,7 +273,7 @@ if (empty($configName) || $configuration === null) {
                         <label for="sourceSecondaryRadio">Secondary unique field:</label>
                         <?php
                         if (empty($sourceSecondaryUniqueId)) {
-                            echo '<span style="color: #FF0000; font-weight: bold;">(not avaible)</span>';
+                            echo '<span style="color: #FF0000; font-weight: bold;">(not available)</span>';
                         } else {
                             echo "<b>{$sourceSecondaryUniqueId}</b>";
                         }
