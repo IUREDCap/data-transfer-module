@@ -171,6 +171,7 @@ DataTransferModule.renderFieldHtml = function(project, isSource = true, event = 
 
     let nullMapping = this.getNullMapping();
     let formNames = project.getFormNameOptions(isSource, nullMapping);
+
     html += DataTransferModule.renderOptionsHtml(formNames, formNames, form);
     html += '</select>';
     html += '</td>';
@@ -405,11 +406,13 @@ DataTransferModule.createProject = function(projectJson) {
     project = JSON.parse( projectJson );
 
     project.getRecordIdField = function() {
-        return project.record_id;
+        //nal: return project.record_id;
+        return this.record_id;
     }
 
     project.isLongitudinal = function() {
-        return project.project_info.is_longitudinal;
+        //nal: return project.project_info.is_longitudinal;
+        return this.project_info.is_longitudinal;
     }
 
     /**
@@ -430,8 +433,11 @@ DataTransferModule.createProject = function(projectJson) {
 
     project.getEventsWithRepeatingForms = function() {
         let eventsWithRepeatingForms = [];
+        //nal:
+        let self = this;
 
-        jQuery.each(project.event_map, function(uniqueEventName, value) {
+        //nal: jQuery.each(project.event_map, function(uniqueEventName, value) {
+        jQuery.each(self.event_map, function(uniqueEventName, value) {
             if (value.repeating_forms) {
                 eventsWithRepeatingForms.push(uniqueEventName);
             }
@@ -466,7 +472,8 @@ DataTransferModule.createProject = function(projectJson) {
     project.getEventsWithInstances = function() {
         let eventsWithInstances = [];
 
-        let eventMap = project.event_map;
+        //nal: let eventMap = project.event_map;
+        let eventMap = this.event_map;
         if (eventMap.hasOwnProperty(event)) {
             eventInfo = eventMap.event;
             if (eventInfo.isRepeating || eventInfo.repeating_forms) {
@@ -488,8 +495,10 @@ DataTransferModule.createProject = function(projectJson) {
 
     project.getNonLongitudinalRepeatingForms = function() {
         repeatingForms = [];
-        if (!project.isLongitudinal()) {
-            repeatingForms = project.repeating_forms;
+        //nal: if (!project.isLongitudinal()) {
+        //    repeatingForms = project.repeating_forms;
+        if (!this.isLongitudinal()) {
+            repeatingForms = this.repeating_forms;
         }
 
         return repeatingForms;
@@ -549,7 +558,7 @@ DataTransferModule.createProject = function(projectJson) {
     project.getFieldNames = function(event = null, form = null, sourceEvent = null, sourceForm = null) {
         let forms = [];
 
-        let fields = project.fields;
+        let fields = this.fields;
         // let fieldNames = [];
         let fieldNames = [];
         // let allFieldNames = Object.keys(fields);
@@ -567,20 +576,20 @@ DataTransferModule.createProject = function(projectJson) {
         }
         else if (event === 'MATCHING' && sourceEvent !== null && sourceEvent !== '' && sourceEvent !== 'ALL') {
             // destination event specified as matching, and source event is a single event
-            forms = project.getFormNames(sourceEvent);
+            forms = this.getFormNames(sourceEvent);
         }
         else if (event !== null && event !== '' && event !== 'ALL' && event !== 'MATCHING') {
             // event specified as a single event (and no form specified)
-            forms = project.getFormNames(event);
+            forms = this.getFormNames(event);
         }
         else {
             // No form or event specified
-            forms = project.getFormNames();
+            forms = this.getFormNames();
         }
 
 
         for (let i = 0; i < forms.length; i++) {
-            formFieldNames = Array.from( project.form_fields[forms[i]] );
+            formFieldNames = Array.from( this.form_fields[forms[i]] );
             if (formFieldNames !== null && formFieldNames.length > 0) {
                 // If the form exists in the project and has fields,
                 // then add the complete field to the form fields
@@ -638,15 +647,15 @@ DataTransferModule.createProject = function(projectJson) {
         let formNames = [];
 
         if (field !== null && field !== '' && field !== 'ALL' && field !== 'EQUIVALENT' && field !== 'COMPATIBLE') {
-            formNames.push(project.fields[field].form_name);
+            formNames.push(this.fields[field].form_name);
         }
         else if (event !== null && event !== '' && event !== 'ALL' && event !== 'MATCHING') {
             // event is set, but field is not set
-            formNames = Array.from( project.event_forms[event] );
+            formNames = Array.from( this.event_forms[event] );
         }
         else {
             // event and field not set; return all form names
-            formNames = Array.from( project.forms );
+            formNames = Array.from( this.forms );
         }
 
         formNames.sort();
@@ -692,9 +701,11 @@ DataTransferModule.createProject = function(projectJson) {
         let uniqueEventNames = [];
 
         // console.log("field = " + field);
-        if (project.project_info.is_longitudinal) {
+        //nal: if (project.project_info.is_longitudinal) {
+        if (this.project_info.is_longitudinal) {
             if (field !== null && field !== '' && field !== 'ALL' && field !== 'EQUIVALENT' && field !=='COMPATIBLE') {
-                let fields = project.fields;
+                //nal: let fields = project.fields;
+                let fields = this.fields;
                 let fieldNames = Object.keys(fields);
                 // console.log("fields = " + fields);
                 for (let i = 0; i < fieldNames.length; i++) {
@@ -709,11 +720,13 @@ DataTransferModule.createProject = function(projectJson) {
                 }
             }
             else if (form !== null && form !== '' && form !== 'ALL' && form !== 'MATCHING') {
-                uniqueEventNames = Array.from( project.form_events[form] );
+                //nal: uniqueEventNames = Array.from( project.form_events[form] );
+                uniqueEventNames = Array.from( this.form_events[form] );
             }
             else {
                 // form and field not set
-                let events = project.events;
+                //nal: let events = project.events;
+                let events = this.events;
                 for (let i = 0; i < events.length; i++) {
                     let event = events[i];
                     uniqueEventNames.push(event.unique_event_name);
@@ -764,8 +777,10 @@ DataTransferModule.createProject = function(projectJson) {
         if (field !== null && field !== '' && field !== 'ALL' && field !== 'EQUIVALENT' && field !== 'COMPATIBLE') {
             //console.log("getFieldForm field: " + field);
             //console.log("project: " + project.fields[field].form_name);
-            if (field in project.fields) {
-                form = project.fields[field].form_name;
+            //nal: if (field in project.fields) {
+            //    form = project.fields[field].form_name;
+            if (field in this.fields) {
+                form = this.fields[field].form_name;
             }
         }
 

@@ -243,7 +243,38 @@ class FieldMapping
                 }
             }
 
-            if ($sourceProject->hasField($this->destinationField)) {
+            //DEBUG
+            //$debugData = [
+            //    'file' => __FILE__,
+            //    'method' => __METHOD__,
+
+            //    'sourceField' => $this->sourceField,
+            //    'destinationField' => $this->destinationField,
+
+            //    'sourceProject_has_sourceField' =>
+            //        $sourceProject->hasField($this->sourceField) ? 'TRUE' : 'FALSE',
+
+            //    'sourceProject_has_destinationField' =>
+            //        $sourceProject->hasField($this->destinationField) ? 'TRUE' : 'FALSE',
+
+            //    'destinationProject_has_destinationField' =>
+            //        $destinationProject->hasField($this->destinationField) ? 'TRUE' : 'FALSE',
+
+            //    'sourceFieldMetadata_from_sourceProject' =>
+            //        $sourceProject->getFieldMetadata($this->sourceField) ?? null,
+
+           //     'destinationFieldMetadata_from_destinationProject' =>
+            //        $destinationProject->getFieldMetadata($this->destinationField) ?? null,
+           // ];
+
+           // echo '<pre style="background:#fff3cd; border:2px solid #c00; padding:1em; white-space:pre-wrap;">';
+          //  echo htmlspecialchars(print_r($debugData, true), ENT_QUOTES, 'UTF-8');
+          //  echo '</pre>';
+
+          //  exit;
+            //
+            //if ($sourceProject->hasField($this->destinationField)) {
+            if ($destinationProject->hasField($this->destinationField)) {
                 if ($this->excludeDestination) {
                     $mappingStatus->mergeStatus(FieldMappingStatus::OK);
                 } else {
@@ -279,7 +310,7 @@ class FieldMapping
                 }
             } else {
                 $mappingStatus->mergeStatus(FieldMappingStatus::ERROR);
-                $errorMessage = "Mapping desintion field \"{$this->destinationField}\" is not valid.";
+                $errorMessage = "Mapping destination field \"{$this->destinationField}\" is not valid.";
                 $mappingStatus->addError($errorMessage);
             }
         }

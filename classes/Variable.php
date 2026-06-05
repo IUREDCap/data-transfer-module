@@ -362,7 +362,8 @@ class Variable
                 $compare = self::TYPES_COMPATIBLE;
             }
         } elseif ($fromType === 'datetime_mdy') {
-            if ($toType === 'datetime_dmy' || $toType = 'datetime_ymd') {
+            //if ($toType === 'datetime_dmy' || $toType = 'datetime_ymd') {
+            if ($toType === 'datetime_dmy' || $toType === 'datetime_ymd') {
                 $compare = self::TYPES_COMPATIBLE;
             }
         } elseif ($fromType === 'datetime_ymd') {
@@ -374,7 +375,8 @@ class Variable
                 $compare = self::TYPES_COMPATIBLE;
             }
         } elseif ($fromType === 'datetime_seconds_mdy') {
-            if ($toType === 'datetime_seconds_dmy' || $toType = 'datetime_seconds_ymd') {
+            //if ($toType === 'datetime_seconds_dmy' || $toType = 'datetime_seconds_ymd') {
+            if ($toType === 'datetime_seconds_dmy' || $toType === 'datetime_seconds_ymd') {
                 $compare = self::TYPES_COMPATIBLE;
             }
         } elseif ($fromType === 'datetime_seconds_ymd') {
