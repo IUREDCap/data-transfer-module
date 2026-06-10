@@ -24,24 +24,26 @@ One-time initial setup:
     * Create projects in REDCap for each of the .REDCap.xml files in the **tests/projects** directory; make sure
       that the project title for each project is unique and matches what is in the table below:
 
-        | Project File                                         | Project Title                                                  |
-        | ---------------------------------------------------- | -------------------------------------------------------------- |
-        | basic-source-project.REDCap.xml                      | Data Transfer - Basic Source Project                           |
-        | basic-source-missing-data-codes.REDCap.xml           | Data Transfer - Basic Source Project - Missing Data Codes      |
-        | basic-source-secondary-id.REDCap.xml                 | Data Transfer - Basic Source Project - Secondary ID            |
-        | basic-source-project-with-blanks.REDCap.xml          | Data Transfer - Basic Source Project with Blanks               |
-        | basic-destination-project.REDCap.xml                 | Data Transfer - Basic Destination Project                      |
-        | basic-destination-missing-data-codes.REDCap.xml      | Data Transfer - Basic Destination Project - Missing Data Codes |
-        | basic-destination-schedule.REDCap.xml                | Data Transfer - Basic Destination Project - Schedule           |
-        | repeating-events-source-project.REDCap.xml           | Data Transfer - Repeating Events Source Project                |
-        | repeating-events-source-project-dags.REDCap.xml      | Data Transfer - Repeating Events Source Project - DAGs         |
-        | repeating-events-source-secondary-id.REDCap.xml      | Data Transfer - Repeating Events Source Project - Secondary ID |
-        | repeating-events-destination-project.REDCap.xml      | Data Transfer - Repeating Events Destination Project           |
-        | repeating-events-destination-project-dags.REDCap.xml | Data Transfer - Repeating Events Destination Project - DAGs    |
-        | repeating-forms-source.REDCap.xml                    | Data Transfer - Repeating Forms Source Project                 |
-        | repeating-forms-destination.REDCap.xml               | Data Transfer - Repeating Forms Destination Project            |
-        | date-time-destination.REDCap.xml                     | (Not currently used)                                           |
-        | date-time-source.REDCap.xml                          | (Not currenlty used)                                           |
+        | Project File                                         | Project Title                                                    |
+        | ---------------------------------------------------- | ---------------------------------------------------------------- |
+        | basic-source-project.REDCap.xml                      | Data Transfer - Basic Source Project                             |
+        | basic-source-missing-data-codes.REDCap.xml           | Data Transfer - Basic Source Project - Missing Data Codes        |
+        | basic-source-secondary-id.REDCap.xml                 | Data Transfer - Basic Source Project - Secondary ID              |
+        | basic-source-project-with-blanks.REDCap.xml          | Data Transfer - Basic Source Project with Blanks                 |
+        | basic-destination-project.REDCap.xml                 | Data Transfer - Basic Destination Project                        |
+        | basic-destination-missing-data-codes.REDCap.xml      | Data Transfer - Basic Destination Project - Missing Data Codes   |
+        | basic-destination-schedule.REDCap.xml                | Data Transfer - Basic Destination Project - Schedule             |
+        | repeating-events-source-project.REDCap.xml           | Data Transfer - Repeating Events Source Project                  |
+        | repeating-events-source-project-dags.REDCap.xml      | Data Transfer - Repeating Events Source Project - DAGs           |
+        | repeating-events-source-secondary-id.REDCap.xml      | Data Transfer - Repeating Events Source Project - Secondary ID   |
+        | repeating-events-destination-project.REDCap.xml      | Data Transfer - Repeating Events Destination Project             |
+        | repeating-events-destination-project-dags.REDCap.xml | Data Transfer - Repeating Events Destination Project - DAGs      |
+        | repeating-forms-source.REDCap.xml                    | Data Transfer - Repeating Forms Source Project                   |
+        | repeating-forms-destination.REDCap.xml               | Data Transfer - Repeating Forms Destination Project              |
+        | different-form-field-names-source.REDCap.xml         | Data Transfer - Different Form & Field Names Source Project      |
+        | different-form-field-names-destination.REDCap.xml    | Data Transfer - Different Form & Field Names Destination Project | 
+        | date-time-destination.REDCap.xml                     | (Not currently used)                                             |
+        | date-time-source.REDCap.xml                          | (Not currenlty used)                                             |
 
 
     * Give access to each project to the test_user account (and specify in config.ini), with the following permissions:
