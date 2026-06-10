@@ -43,9 +43,9 @@ Feature: Data Transfer
     And I should not see "Incomplete Field Mappings for Configuration"
     And I should not see "Error Field Mappings for Configuration"
     Then I should see table:
-      | Event | Form         | Field |  | Event | Form         | Field     |
-      |       | demographics | name  |  |       | information  | name      |
-      |       | demographics | phone |  |       | information  | telephone |
+      | Event | Form         | Field |  | Event | Form           | Field     |
+      |       | demographics | name  |  |       | information_d  | name      |
+      |       | demographics | phone |  |       | information_d  | telephone |
 
     # Transfer the data
     When I go to Data Transfer for project "Data Transfer - Different Form & Field Names Source Project"
