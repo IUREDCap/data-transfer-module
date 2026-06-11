@@ -5,8 +5,13 @@
     "framework-version": 15,
     "authors": [
         {
+           "name": "Nancy Long",
+           "email": "naalong@iu.edu",
+           "institution": "Indiana University"
+        },
+        {
             "name": "Jim Mullen",
-            "email": "mullen2@iu.edu",
+            "email": "",
             "institution": "Indiana University"
         }
     ],
