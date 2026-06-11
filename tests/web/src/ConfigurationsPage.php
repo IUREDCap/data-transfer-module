@@ -48,7 +48,7 @@ class ConfigurationsPage
         # and then click on the copy button
         $element = $page->find(
             "xpath",
-            "//tr/td[text()='".$configName."']/following-sibling::td[" . self::COPY_COLUMN . "]"
+            "//tr/td[text()='".$configName."']/following-sibling::td[" . self::COPY_COLUMN . "]/input"
         );
         $element->click();
 
