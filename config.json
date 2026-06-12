@@ -2,7 +2,7 @@
     "name": "Data Transfer",
     "namespace": "IU\\DataTransfer",
     "description": "Data Transfer transfers data between REDCap projects.",
-    "framework-version": 15,
+    "framework-version": 16,
     "authors": [
         {
            "name": "Nancy Long",
@@ -27,7 +27,7 @@
     "compatibility": {
         "php-version-min": "8.0.0",
         "php-version-max": "",
-        "redcap-version-min": "14.5.20",
+        "redcap-version-min": "14.6.4",
         "redcap-version-max": ""
     },
     "links": {
