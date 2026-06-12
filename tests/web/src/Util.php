@@ -323,19 +323,81 @@ class Util
         sleep(3);
 
         // $page->pressButton("Erase all data");
-        Util::waitForAndPressButton($session, "Erase all data");
+        //Util::waitForAndPressButton($session, "Erase all data");
 
         # Dialog "Erase all data" confirmation
-        $elements = $page->findAll('css', '.ui-button');
-        foreach ($elements as $element) {
-            if ($element->getText() === "Erase all data") {
-                $button = $element;
-                break;
-            }
-        }
-        $button->press();
+        //$elements = $page->findAll('css', '.ui-button');
+        //foreach ($elements as $element) {
+        //    if ($element->getText() === "Erase all data") {
+        //        $button = $element;
+        //        break;
+        //    }
+        //}
+        //$button->press();
 
-        $page->pressButton("Close"); // Success dialog
+        //$page->pressButton("Close"); // Success dialog
+
+
+        # Page-level "Erase all data" button
+        Util::waitForAndPressButton($session, "Erase all data");
+
+        # Confirmation dialog "Erase all data" button
+        $button = null;
+
+        for ($i = 0; $i < 10; $i++) {
+            $buttons = $session->getPage()->findAll(
+                'xpath',
+                "//div[contains(@class, 'ui-dialog-buttonpane')]//*[self::button or self::input][normalize-space(.)='Erase all data' or @value='Erase all data']"
+            );
+
+            foreach ($buttons as $candidate) {
+                if ($candidate->isVisible()) {
+                    $button = $candidate;
+                    break 2;
+                } 
+            }
+
+           sleep(1);
+        }
+
+        if (empty($button)) {
+            throw new \Exception('Could not find the confirmation dialog "Erase all data" button.');
+        }
+
+        $button->click();
+
+        # Success dialog "Close" button
+        $closeButton = null;
+
+        for ($i = 0; $i < 60; $i++) {
+            $buttons = $session->getPage()->findAll(
+                'xpath',
+                "//*[self::button or self::input][normalize-space(.)='Close' or @value='Close']"
+            );
+
+            foreach ($buttons as $candidate) {
+                if ($candidate->isVisible()) {
+                    $closeButton = $candidate;
+                    break 2;
+                }
+            }
+
+            sleep(1);
+        }
+
+        if (empty($closeButton)) {
+            throw new \Exception(
+                'Could not find the success dialog "Close" button after erasing data. ' 
+            );
+        }
+
+        $closeButton->click();
+
+        sleep(1);
+
+        # Prove that the erase actually completed before returning.
+        self::goToRecordStatusDashboard($session, $projectName);
+        self::waitForAndSee($session, "No records exist yet", 60);
     }
 
     // TODO
